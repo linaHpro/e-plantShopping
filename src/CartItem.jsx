@@ -18,7 +18,7 @@ const CartItem = ({ onContinueShopping }) => {
     return totalCost;  // Retourner la somme totale
   };
 
-const t=calculateTotalAmount();
+
 
 
   const handleIncrement = (item) => {
@@ -39,7 +39,8 @@ const t=calculateTotalAmount();
   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem(item));
+    console.log('Suppression de l\'article:', item); 
+    dispatch(removeItem({ name: item.name }));
   };
 
    
@@ -60,7 +61,7 @@ const t=calculateTotalAmount();
               </div>
               <div className="cart-item-total">
                
-                Total: ${t* item.quantity}
+                Total: ${parseFloat(item.cost.replace('$', '').trim()) * item.quantity}
               </div>
               <button className="cart-item-delete" onClick={() => handleRemove(item)}>Delete</button>
             </div>
